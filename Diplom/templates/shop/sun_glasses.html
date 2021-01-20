@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Main page
+{% endblock %}
+
+
+{%block background%}
+<img class="collection__image"
+     src="//cdn.shopify.com/s/files/1/2792/4128/collections/00080_154_2048x.jpg?v=1569533448"
+     alt="Sun"
+     width="100%">
+{%endblock%}
+
+{% block content %}
+{% for product in products %}
+<div class="col-4">
+    <b>
+        <center>{{ product.name }}</center>
+    </b>
+    <br><a href="{% url 'shop:product_detail' slug=product.slug %}">
+    <img src="{{ product.image.url }} "></a>
+    <br>
+    <p>{{ product.description }}</p>
+    <br>
+    <b>Category: {{ product.category }}</b>
+    <br>
+    <b>{{ product.price }}$</b>
+    <br><br><br>
+</div>
+{% endfor %}
+{% endblock %}
