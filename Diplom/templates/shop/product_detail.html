@@ -5,19 +5,62 @@
 {% block title %}
 Product {{ product.name }}
 {% endblock %}
-<link rel="stylesheet" href="{% static 'product_detail.css'%}">
-{% block content %}
 
-<b>{{ product.name }}
-</b>
-<br>
-<img src="{{ product.image.url }}">
-<br>
-<p>{{ product.description }}</p>
-<br>
-<b>Category:{{product.category}}</b>
-<br>
-<b>{{ product.price }}$</b>
-<br><br><br>
 
-{% endblock %}
+{%block detail%}
+<link rel="stylesheet" href="{% static 'shop/product_detail.css'%}">
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <br><br><br><br>
+            <img src="{{ product.image.url }}" rel="glasses">
+        </div>
+        <div class="col">
+            <h1>{{ product.name }}
+            </h1>
+            <h2>{{ product.price }}$</h2>
+            <p>{{product.category}} glasses</p>
+            <p>{{product.type}}</p>
+            <br>
+            <p>{{ product.description }}</p>
+            <br>
+            <form>
+                <h1>
+                    <button type="button" class="btn btn-dark btn-lg">Add to
+                        card
+                    </button>
+                </h1>
+            </form>
+            <br><br><br>
+        </div>
+    </div>
+</div>
+
+<div id="carouselExampleFade" class="carousel slide carousel-fade"
+     data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://c.wallhere.com/photos/00/de/snow_winter_lake_reflection_trees_clouds_mountains_photography-1227074.jpg!d"
+                 class="d-block w-100 object-fit" alt="" /><h3>SeeYou again</h3>
+        </div>
+        <div class="carousel-item">
+            <img src="https://cdn.shopify.com/s/files/1/2792/4128/files/Collab-1_1800x900.progressive.jpg?v=1523898021"
+                 class="d-block w-100 object-fit" alt="" /><h3>SeeYou again</h3>
+        </div>
+        <div class="carousel-item">
+            <img src="https://cdn.shopify.com/s/files/1/2792/4128/files/Collab-3_1800x900.progressive.jpg?v=1523898072"
+                 class="d-block w-100 object-fit" alt="" /><h3>SeeYou again</h3>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleFade" role="button"
+       data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleFade" role="button"
+       data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </a>
+</div>
+{%endblock%}

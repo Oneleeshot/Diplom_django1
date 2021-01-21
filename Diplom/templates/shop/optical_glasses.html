@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
-{% load static %}
+{%load static%}
 
 {% block title %}
-Sun glasses
+Optical glasses
 {% endblock %}
+
+
 {%block background%}
 <div>
-    <link rel="stylesheet" href="{% static 'shop/sun_glasses.css'%}">
-    <img class="d-block w-100 object-fit" src="//cdn.shopify.com/s/files/1/2792/4128/collections/00080_154_2048x.jpg?v=1569533448"
-         alt="Sun"
-         rel="sun"/><h1>Sun</h1>
-</div>
+<link rel="stylesheet" href="{% static 'shop/optical_glasses.css'%}">
+<img class="d-block w-100 object-fit"
+     src="//cdn.shopify.com/s/files/1/2792/4128/collections/00080_283_2048x.jpg?v=1569533527"
+     alt="Optical"/><h1>Optical</h1>
+    </div>
 {%endblock%}
 
 {% block content %}
@@ -20,7 +22,7 @@ Sun glasses
         <center>{{ product.name }}</center>
     </b>
     <br><a href="{% url 'shop:product_detail' slug=product.slug %}">
-    <img src="{{ product.image.url }}"rel='glasses'></a>
+    <img src="{{ product.image.url }}" rel="glasses"></a>
     <br>
     <p>{{ product.description }}</p>
     <br>
@@ -31,4 +33,3 @@ Sun glasses
 </div>
 {% endfor %}
 {% endblock %}
-

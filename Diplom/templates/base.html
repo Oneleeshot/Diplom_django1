@@ -27,7 +27,7 @@
 
 
                 <li class="nav-item dropdown">
-                    <a type="button" class="btn btn-light"
+                    <a name="sun" type="button" class="btn btn-light"
                        href="{% url 'shop:sun_glasses'%}">Sun
                     </a>
                     <button type="button"
@@ -36,14 +36,18 @@
                         <span class="visually-hidden">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Men`s</a></li>
-                        <li><a class="dropdown-item" href="#">Women`s</a></li>
+                        <li><a class="dropdown-item"
+                               href="{% url 'shop:sun_mens_glasses'%}">Men`s</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                               href="{% url 'shop:sun_womens_glasses'%}">Women`s</a>
+                        </li>
                     </ul>
                 </li>
 
                 <li class="nav-item dropdown">
                     <a type="button" class="btn btn-light"
-                       href="#">Optical
+                       href="{% url 'shop:optical_glasses'%}">Optical
                     </a>
                     <button type="button"
                             class="btn btn-light dropdown-toggle "
@@ -51,18 +55,22 @@
                         <span class="visually-hidden">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Men`s</a></li>
-                        <li><a class="dropdown-item" href="#">Women`s</a></li>
+                        <li><a class="dropdown-item"
+                               href="{% url 'shop:optical_mens_glasses'%}">Men`s</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                               href="{% url 'shop:optical_womens_glasses'%}">Women`s</a>
+                        </li>
                     </ul>
             </ul>
 
-
-            <form class="d-flex" action="{% url 'shop:sun_glasses'%}">
-                <input class="form-control me-2" type="search"
-                       placeholder="Search" aria-label="Search"
-                name="search">
-                <button class="btn btn-outline-success" type="submit">Search
-                </button>
+            <form class="d-flex" action="{% url 'shop:glasses'%}">
+                <div class="input-group rounded">
+                    <input type="search" name="search"
+                           class="form-control rounded"
+                           placeholder="Search" aria-label="Search"
+                           aria-describedby="search-addon"/>
+                </div>
             </form>
         </div>
     </div>
@@ -75,13 +83,14 @@
     <br>
 </div>
 
-
 <div class="container">
     <div class="row">
         {% block content %}
-        There is no any content.
         {% endblock %}
     </div>
+</div>
+{%block detail%}
+{%endblock%}
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
         integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"

@@ -2,6 +2,7 @@ from django.db import models
 from django.shortcuts import reverse
 from PIL import Image
 
+
 # Create your models here.
 
 
@@ -21,13 +22,15 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    slug = models.SlugField()
-    image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
-    description = models.TextField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    available = models.BooleanField(default=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
+    name = models.CharField(max_length=100, null=True)
+    slug = models.SlugField(null=True)
+    image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True,
+                              null=True)
+    description = models.TextField(null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    available = models.BooleanField(default=True, null=True)
+    type = models.CharField(max_length=50, default=" ")
 
     class Meta:
         ordering = ['name']

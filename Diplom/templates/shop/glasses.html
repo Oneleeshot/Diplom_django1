@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+SeeYou
+{% endblock %}
+
+
+{% block background %}
+<div>
+    <link rel="stylesheet" href="{% static 'shop/glasses.css'%}">
+    <img class="d-block w-100 object-fit"
+         src="//cdn.shopify.com/s/files/1/2792/4128/files/SALT_FALL2020_1600x800.progressive.jpg?v=1600893489"
+         alt="Glasses"/>
+    <h1>Welcome to SeeYou.</h1>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<h3>Our products</h3><br><br>
+{% for product in products %}
+<div class="col-4">
+    <h2>{{ product.name }}
+    </h2>
+    <br>
+    <a href="{% url 'shop:product_detail' slug=product.slug %}">
+        <img src="{{ product.image.url }} " rel="glasses"></a>
+    <br><br><br>
+</div>
+{% endfor %}
+{% endblock %}
