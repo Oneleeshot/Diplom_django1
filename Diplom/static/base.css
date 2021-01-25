@@ -1,0 +1,9 @@
+a[rel='nav-links']{
+    transition: all 0.25s ease-in-out;
+    color: inherit;
+    background-color: transparent;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 400;
+}

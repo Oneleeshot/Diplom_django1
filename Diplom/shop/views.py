@@ -1,8 +1,10 @@
+from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render
-from .models import Category, Product
+from .models import Product
 from django.db.models import Q
 from django.views.generic import DetailView
-
+from django.contrib.auth import login
+from django.views.generic.edit import FormView
 
 def home(request):
     return render(request, 'shop/home.html')
@@ -101,3 +103,4 @@ class ProductDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
