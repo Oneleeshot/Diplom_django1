@@ -1,11 +1,9 @@
-from django.contrib.auth.forms import AuthenticationForm
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render
+from django.core.paginator import Paginator
+from django.shortcuts import render, get_object_or_404
 from .models import Product
 from django.db.models import Q
 from django.views.generic import DetailView, ListView
-from django.contrib.auth import login
-from django.views.generic.edit import FormView
+from cart.forms import CartAddProductForm
 
 
 class GlassesView(ListView):
@@ -148,9 +146,17 @@ class OpticalWomenGlassesView(ListView):
                       context={'products': products})
 
 
-class ProductDetailView(DetailView):
-    model = Product
+# class ProductDetailView(DetailView):
+#     model = Product
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         return context
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+def product_detail(request, slug):
+    product = get_object_or_404(Product,
+                                slug=slug,
+                                available=True)
+    cart_product_form = CartAddProductForm()
+    return render(request, 'shop/product_detail.html',
+                  {'product': product, 'cart_product_form': cart_product_form})

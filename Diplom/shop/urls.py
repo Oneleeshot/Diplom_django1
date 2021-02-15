@@ -33,7 +33,8 @@ urlpatterns = [
                        views.OpticalWomenGlassesView.as_view(),
                        name='optical_womens_glasses'),
                   path('<slug>/',
-                       ProductDetailView.as_view(),
+                       views.product_detail,
                        name='product_detail'),
+
               ] + static.static(settings.STATIC_URL,
                                 document_root=settings.STATIC_URL)
