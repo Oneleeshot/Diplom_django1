@@ -1,4 +1,4 @@
-{% load static%}
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,15 +8,15 @@
           crossorigin="anonymous">
     <title>
         {% block title %}
-        Blog engine
+            Blog engine
         {% endblock %}
     </title>
 </head>
 <body>
-<link rel="stylesheet" href="{% static 'base.css'%}">
+<link rel="stylesheet" href="{% static 'base.css' %}">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'shop:home_page'%}"><b>SeeYou</b></a>
+        <a class="navbar-brand" href="{% url 'shop:home_page' %}"><b>SeeYou</b></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -29,7 +29,7 @@
 
                 <li class="nav-item dropdown">
                     <a name="sun" type="button" class="btn btn-light"
-                       href="{% url 'shop:sun_glasses'%}">Sun
+                       href="{% url 'shop:sun_glasses' %}">Sun
                     </a>
                     <button type="button"
                             class="btn btn-light dropdown-toggle "
@@ -38,17 +38,17 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item"
-                               href="{% url 'shop:sun_mens_glasses'%}">Men`s</a>
+                               href="{% url 'shop:sun_mens_glasses' %}">Men`s</a>
                         </li>
                         <li><a class="dropdown-item"
-                               href="{% url 'shop:sun_womens_glasses'%}">Women`s</a>
+                               href="{% url 'shop:sun_womens_glasses' %}">Women`s</a>
                         </li>
                     </ul>
                 </li>
 
                 <li class="nav-item dropdown">
                     <a type="button" class="btn btn-light"
-                       href="{% url 'shop:optical_glasses'%}">Optical
+                       href="{% url 'shop:optical_glasses' %}">Optical
                     </a>
                     <button type="button"
                             class="btn btn-light dropdown-toggle "
@@ -57,20 +57,20 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item"
-                               href="{% url 'shop:optical_mens_glasses'%}">Men`s</a>
+                               href="{% url 'shop:optical_mens_glasses' %}">Men`s</a>
                         </li>
                         <li><a class="dropdown-item"
-                               href="{% url 'shop:optical_womens_glasses'%}">Women`s</a>
+                               href="{% url 'shop:optical_womens_glasses' %}">Women`s</a>
                         </li>
                     </ul>
             </ul>
             {% if user.is_authenticated %}
-                <a rel="nav-links" href="{% url 'account:logged_out'%}"
+                <a rel="nav-links" href="{% url 'account:logged_out' %}"
                    class="nav-link">
                     Logout
                 </a>
-                {% else %}
-                <a rel="nav-links" href="{%url 'account:login' %}"
+            {% else %}
+                <a rel="nav-links" href="{% url 'account:login' %}"
                    class="nav-link">
                     Login
                 </a>
@@ -80,7 +80,7 @@
                 </a>
             {% endif %}
             <a rel="nav-links" class="nav-link" href="#">Cart</a>
-            <form class="d-flex" action="{% url 'shop:glasses'%}">
+            <form class="d-flex" action="{% url 'shop:glasses' %}">
                 <div class="input-group rounded">
                     <input type="search" name="search"
                            class="form-control rounded"
@@ -94,20 +94,55 @@
 
 <div class="">
     <div class="collection__top collection__top--no-overlay">
-        {%block background%}
-        {%endblock%}
+        {% block background %}
+        {% endblock %}
     </div>
     <br>
 </div>
-
 <div class="container">
     <div class="row">
         {% block content %}
         {% endblock %}
     </div>
 </div>
-{%block detail%}
-{%endblock%}
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+        </div>
+        <div class="col-sm">
+            {% if is_paginated %}
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item {% if not prev_url %}disabled{% endif %}">
+                            <a class="page-link"
+                               href="{{ prev_url }}">Previous</a>
+                        </li>
+                        {% for n in page_object.paginator.page_range %}
+                            {% if page_object.number == n %}
+                                <li class="page-item active">
+                                    <a class="page-link"
+                                       href="?page={{ n }}">{{ n }}
+                                        <span class="sr-only"></span> </a>
+                                </li>
+                            {% elif n > page_object.number|add:-3 and n < page_object.number|add:3 %}
+                                <li class="page-item"><a class="page-link"
+                                                         href="?page={{ n }}">{{ n }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        <li class="page-item {% if not next_url %}disabled{% endif %}">
+                            <a class="page-link" href="{{ next_url }}">Next</a>
+                    </ul>
+                </nav>
+            {% endif %}
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+</div>
+</div>
+{% block detail %}
+{% endblock %}
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
         integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"

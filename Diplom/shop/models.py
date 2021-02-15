@@ -1,9 +1,7 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.shortcuts import reverse
 from PIL import Image
-
-
-# Create your models here.
 
 
 class Category(models.Model):
@@ -51,3 +49,24 @@ class Product(models.Model):
             output_size = (325, 155)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+
+class CartProduct(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    cart = models.ForeignKey('Cart', on_delete=models.CASCADE,
+                             related_name='related_products')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    final_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return self.product.name
+
+
+class Cart(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    products = models.ManyToManyField(CartProduct, blank=True,
+                                      related_name='related_cart')
+    final_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return str(self.id)
