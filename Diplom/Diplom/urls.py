@@ -19,10 +19,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+from api.urls import router
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
     path('cart/', include('cart.urls', namespace='cart')),
+    path('api/', include(router.urls)),
     path('', include('shop.urls', namespace='shop')),
 
 ]
