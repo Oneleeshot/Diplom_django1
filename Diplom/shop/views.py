@@ -2,7 +2,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from .models import Product
 from django.db.models import Q
-from django.views.generic import DetailView, ListView
+from django.views.generic import ListView
 from cart.forms import CartAddProductForm
 
 
@@ -48,110 +48,44 @@ class GlassesView(ListView):
 class SunGlassesView(ListView):
     model = Product
     template_name = 'shop/sun_glasses.html'
-
-    def get(self, request, *args, **kwargs):
-        search = request.GET.get('search', '')
-        if search:
-            products = Product.objects.filter(
-                Q(name__icontains=search) or Q(
-                    category__icontains=search))
-        else:
-            products = Product.objects.filter(type='Sun')
-        return render(request, 'shop/sun_glasses.html',
-                      context={'products': products})
+    queryset = Product.objects.filter(type='Sun')
+    context_object_name = 'products'
 
 
 class SunMenGlassesView(ListView):
     model = Product
     template_name = 'shop/sun_glasses.html'
     context_object_name = "products"
-
-    def get(self, request, *args, **kwargs):
-        search = request.GET.get('search', '')
-        if search:
-            products = Product.objects.filter(
-                Q(name__icontains=search) or Q(
-                    category__icontains=search))
-        else:
-            products = Product.objects.filter(type='Sun', category=1)
-        return render(request, 'shop/sun_glasses.html',
-                      context={'products': products})
+    queryset = Product.objects.filter(type='Sun', category=1)
 
 
 class SunWomenGlassesView(ListView):
     model = Product
     template_name = 'shop/sun_glasses.html'
     context_object_name = "products"
-
-    def get(self, request, *args, **kwargs):
-        search = request.GET.get('search', '')
-        if search:
-            products = Product.objects.filter(
-                Q(name__icontains=search) or Q(
-                    category__icontains=search))
-        else:
-            products = Product.objects.filter(type='Sun', category=2)
-        return render(request, 'shop/sun_glasses.html',
-                      context={'products': products})
+    queryset = Product.objects.filter(type='Sun', category=2)
 
 
 class OpticalGlassesView(ListView):
     model = Product
     template_name = 'shop/optical_glasses.html'
     context_object_name = "products"
-
-    def get(self, request, *args, **kwargs):
-        search = request.GET.get('search', '')
-        if search:
-            products = Product.objects.filter(
-                Q(name__icontains=search) or Q(
-                    category__icontains=search))
-        else:
-            products = Product.objects.filter(type='Optical')
-        return render(request, 'shop/optical_glasses.html',
-                      context={'products': products})
+    queryset = Product.objects.filter(type='Optical')
 
 
 class OpticalManGlassesView(ListView):
     model = Product
     template_name = 'shop/optical_glasses.html'
     context_object_name = "products"
-
-    def get(self, request, *args, **kwargs):
-        search = request.GET.get('search', '')
-        if search:
-            products = Product.objects.filter(
-                Q(name__icontains=search) or Q(
-                    category__icontains=search))
-        else:
-            products = Product.objects.filter(type='Optical', category=1)
-        return render(request, 'shop/optical_glasses.html',
-                      context={'products': products})
+    queryset = Product.objects.filter(type='Optical', category=1)
 
 
 class OpticalWomenGlassesView(ListView):
     model = Product
     template_name = 'shop/optical_glasses.html'
     context_object_name = "products"
+    queryset = Product.objects.filter(type='Optical', category=2)
 
-    def get(self, request, *args, **kwargs):
-        search = request.GET.get('search', '')
-        if search:
-            products = Product.objects.filter(
-                Q(name__icontains=search) or Q(
-                    category__icontains=search))
-        else:
-            products = Product.objects.filter(type='Optical', category=2)
-        return render(request, 'shop/optical_glasses.html',
-                      context={'products': products})
-
-
-# class ProductDetailView(DetailView):
-#     model = Product
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         return context
 
 def product_detail(request, slug):
     product = get_object_or_404(Product,
