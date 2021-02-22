@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="{% static 'base.css' %}">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'shop:home_page' %}"><b>SeeYou</b></a>
+        <a class="navbar-brand" href="/glasses/"><b>SeeYou</b></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -29,7 +29,7 @@
 
                 <li class="nav-item dropdown">
                     <a name="sun" type="button" class="btn btn-light"
-                       href="{% url 'shop:sun_glasses' %}">Sun
+                       href="/glasses/sun/">Sun
                     </a>
                     <button type="button"
                             class="btn btn-light dropdown-toggle "
@@ -38,17 +38,17 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item"
-                               href="{% url 'shop:sun_mens_glasses' %}">Men`s</a>
+                               href="/glasses/sun/1/">Men`s</a>
                         </li>
                         <li><a class="dropdown-item"
-                               href="{% url 'shop:sun_womens_glasses' %}">Women`s</a>
+                               href="/glasses/sun/2/">Women`s</a>
                         </li>
                     </ul>
                 </li>
 
                 <li class="nav-item dropdown">
                     <a type="button" class="btn btn-light"
-                       href="{% url 'shop:optical_glasses' %}">Optical
+                       href="/glasses/optical/">Optical
                     </a>
                     <button type="button"
                             class="btn btn-light dropdown-toggle "
@@ -57,10 +57,10 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item"
-                               href="{% url 'shop:optical_mens_glasses' %}">Men`s</a>
+                               href="/glasses/optical/1/">Men`s</a>
                         </li>
                         <li><a class="dropdown-item"
-                               href="{% url 'shop:optical_womens_glasses' %}">Women`s</a>
+                               href="/glasses/optical/1/">Women`s</a>
                         </li>
                     </ul>
             </ul>
@@ -80,7 +80,7 @@
                 </a>
             {% endif %}
             <a rel="nav-links" class="nav-link" href="#">Cart</a>
-            <form class="d-flex" action="{% url 'shop:glasses' %}">
+            <form class="d-flex" action="/glasses/">
                 <div class="input-group rounded">
                     <input type="search" name="search"
                            class="form-control rounded"
