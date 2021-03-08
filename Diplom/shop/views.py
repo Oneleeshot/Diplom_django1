@@ -46,29 +46,3 @@ def product_detail(request, slug):
     cart_product_form = CartAddProductForm()
     return render(request, 'shop/product_detail.html',
                   {'product': product, 'cart_product_form': cart_product_form})
-
-
-"""Наброски пагинации"""
-"""
-paginator = Paginator(products, 6)
-        page_number = request.GET.get('page', 1)
-        page = paginator.get_page(page_number)
-        is_paginator = page.has_other_pages()
-        if page.has_previous():
-            prev_url = '?page={}'.format(page.previous_page_number())
-        else:
-            prev_url = ''
-
-        if page.has_next():
-            next_url = '?page={}'.format(page.next_page_number())
-        else:
-            next_url = ''
-
-        context = {
-            'page_object': page,
-            'is_paginated': is_paginator,
-            'next_url': next_url,
-            'prev_url': prev_url,
-            'products': products,
-        }
-"""
