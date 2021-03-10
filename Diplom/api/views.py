@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from api.pagination import CustomPageNumberPagination
 from api.permissions import IsUserOrReadOnly
@@ -20,4 +20,4 @@ class ProductViewSet(ModelViewSet):
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (IsAdminUser, )
+    permission_classes = (IsAuthenticated, )

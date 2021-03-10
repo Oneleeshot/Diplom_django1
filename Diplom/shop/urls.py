@@ -8,7 +8,7 @@ from django.conf.urls import static
 app_name = 'shop'
 
 urlpatterns = [
-                  path('glasses/',
+                  path('',
                        views.GlassesView.as_view(),
                        name='glasses'),
                   path('glasses/<str:type>/',
